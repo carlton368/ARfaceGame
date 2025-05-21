@@ -157,9 +157,9 @@ PlayerSettings:
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
   enableOpenGLProfilerGPURecorders: 1
-  allowHDRDisplaySupport: 1
-  useHDRDisplay: 1
-  hdrBitDepth: 1
+  allowHDRDisplaySupport: 0
+  useHDRDisplay: 0
+  hdrBitDepth: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
   resolutionScalingMode: 0
@@ -252,7 +252,7 @@ PlayerSettings:
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
   VisionOSManualSigningProvisioningProfileType: 0
-  appleEnableAutomaticSigning: 1
+  appleEnableAutomaticSigning: 2
   iOSRequireARKit: 1
   iOSAutomaticallyDetectAndAddCapabilities: 0
   appleEnableProMotion: 1
