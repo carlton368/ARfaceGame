@@ -9,6 +9,14 @@ public class FaceLandmarkTracker : MonoBehaviour
     public TextMeshProUGUI tmpText;
     public Text uiText;
 
+    [Header("Debug")]
+    [Tooltip("Enable to show real-time cheek puff ratios for debugging.")]
+    public bool enableDebugInfo = true;
+
+    // Optional text components dedicated to debug output. If not assigned, the script will fall back to the instruction texts.
+    public TextMeshProUGUI debugTmpText;
+    public Text debugUiText;
+
     public int leftCheekIndex = 234;
     public int rightCheekIndex = 454;
     public int leftMouthIndex = 61;
@@ -19,6 +27,10 @@ public class FaceLandmarkTracker : MonoBehaviour
     private float rightBaseDist = -1f;
     private bool cheekPuffDetected = false;
     private bool baseSetAnnounced = false;
+
+    // Debug metrics
+    private float leftRatio = 0f;
+    private float rightRatio = 0f;
 
     void Awake()
     {
@@ -50,6 +62,10 @@ public class FaceLandmarkTracker : MonoBehaviour
         Vector3 rightMouthPos = arFace.transform.TransformPoint(verts[rightMouthIndex]);
         float rightDist = Vector3.Distance(rightCheekPos, rightMouthPos);
 
+        // Calculate debug ratios before any early returns that depend on baseline being set.
+        leftRatio = leftBaseDist > 0f ? leftDist / leftBaseDist : 0f;
+        rightRatio = rightBaseDist > 0f ? rightDist / rightBaseDist : 0f;
+
         // Baseline message
         if (leftBaseDist < 0f || rightBaseDist < 0f)
         {
@@ -77,6 +93,25 @@ public class FaceLandmarkTracker : MonoBehaviour
             cheekPuffDetected = false;
             SetInstruction("Cheeks relaxed.\nTry puffing again.");
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (!enableDebugInfo)
+            return;
+
+        // Show current left/right ratio values so designers can tune the threshold.
+        string leftText = leftBaseDist > 0f ? leftRatio.ToString("0.00") : "-";
+        string rightText = rightBaseDist > 0f ? rightRatio.ToString("0.00") : "-";
+        string debugMsg = $"Left: {leftText} | Right: {rightText}";
+
+        // Prefer dedicated debug labels if provided, otherwise fall back to instruction labels.
+        if (debugTmpText != null)
+            debugTmpText.text = debugMsg;
+        else if (debugUiText != null)
+            debugUiText.text = debugMsg;
+        else if (tmpText != null)
+            tmpText.text = debugMsg; // fallback – might overwrite instruction
     }
 
     private void SetInstruction(string message)
