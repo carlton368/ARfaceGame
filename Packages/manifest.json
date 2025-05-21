@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.justinpbarnett.unity-mcp": "https://github.com/justinpbarnett/unity-mcp.git?path=/UnityMcpBridge",
     "com.unity.ai.navigation": "2.0.7",
     "com.unity.collab-proxy": "2.8.2",
     "com.unity.ide.rider": "3.0.36",

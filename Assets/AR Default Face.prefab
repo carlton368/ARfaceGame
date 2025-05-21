@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3410626764657006003}
   - component: {fileID: 4934068002170352936}
   - component: {fileID: 5690179610616557525}
+  - component: {fileID: 3174133688974712182}
   m_Layer: 0
   m_Name: AR Default Face
   m_TagString: Untagged
@@ -138,6 +139,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3174133688974712182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672671635960798505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdf30d395912471098d876922e7ca1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionText: {fileID: 0}
+  leftCheekIndex: 234
+  rightCheekIndex: 454
+  leftMouthIndex: 61
+  rightMouthIndex: 291
 --- !u!1001 &3506685948980655618
 PrefabInstance:
   m_ObjectHideFlags: 0
